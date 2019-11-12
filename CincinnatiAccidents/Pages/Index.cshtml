@@ -1,10 +1,46 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Cincinnati Accidents";
+    var trafficaccidents = (QuickTypeTraffic.TrafficAccident[])ViewData["TrafficAccidents"];
+    var fireaccidents = (QuickTypeFire.FireAccident[])ViewData["FireAccidents"];
 }
 
 <div class="text-center">
-    <h1 class="display-4"> Cincinnati Fire / Traffic Accidents </h1>
-    <h2> Work in Progress </h2>
+    <h1 class="display-4">Cincinnati Accident Report</h1>
+    <p>list of accidents occured in and around city of cincinnati</p>
 </div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Address</th>
+            <th>Neighbourhood</th>
+            <th>Longitude</th>
+            <th>Latitude</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (QuickTypeFire.FireAccident fireAccident in fireaccidents)
+        {
+            <tr>
+                <td>@fireAccident.CreateTimeIncident</td>
+                <td>@fireAccident.AddressX</td>
+                <td>@fireAccident.Neighborhood</td>
+                <td>@fireAccident.LongitudeX</td>
+                <td>@fireAccident.LatitudeX</td>
+            </tr>
+        }
+        @foreach (QuickTypeTraffic.TrafficAccident trafficAccident in trafficaccidents)
+        {
+            <tr>
+                <td>@trafficAccident.Datecrashreported</td>
+                <td>@trafficAccident.AddressX</td>
+                <td>@trafficAccident.CpdNeighborhood</td>
+                <td>@trafficAccident.LongitudeX</td>
+                <td>@trafficAccident.LatitudeX</td>
+            </tr>
+        }
+    </tbody>
+</table>

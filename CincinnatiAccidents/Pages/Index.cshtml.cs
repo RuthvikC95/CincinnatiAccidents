@@ -1,25 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using QuickTypeFire;
+using QuickTypeTraffic;
 
 namespace CincinnatiAccidents.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
-
         public void OnGet()
         {
+            using (var webClient = new WebClient())
+            {
+                String trafficjsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/rvmt-pkmq.json");
+                var trafficAccidents = TrafficAccident.FromJson(trafficjsonString);
+                ViewData["trafficAccidents"] = trafficAccidents;
 
+                String firejsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/vnsz-a3wp.json");
+                var fireAccidents = FireAccident.FromJson(firejsonString);
+                ViewData["fireAccidents"] = fireAccidents;
+            }
         }
     }
 }
