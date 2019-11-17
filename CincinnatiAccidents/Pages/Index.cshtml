@@ -14,6 +14,7 @@
 <table>
     <thead>
         <tr>
+            <th>Department</th>
             <th>Date</th>
             <th>Address</th>
             <th>Neighbourhood</th>
@@ -22,9 +23,10 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (QuickTypeFire.FireAccident fireAccident in fireaccidents)
+        @foreach (QuickTypeFire.FireAccident fireAccident in fireaccidents.OrderBy(fireAccident => fireAccident.CreateTimeIncident))
         {
             <tr>
+                <td>Fire</td>
                 <td>@fireAccident.CreateTimeIncident</td>
                 <td>@fireAccident.AddressX</td>
                 <td>@fireAccident.Neighborhood</td>
@@ -32,9 +34,10 @@
                 <td>@fireAccident.LatitudeX</td>
             </tr>
         }
-        @foreach (QuickTypeTraffic.TrafficAccident trafficAccident in trafficaccidents)
+        @foreach (QuickTypeTraffic.TrafficAccident trafficAccident in trafficaccidents.OrderBy(trafficAccident => trafficAccident.Datecrashreported))
         {
             <tr>
+                <td>Police</td>
                 <td>@trafficAccident.Datecrashreported</td>
                 <td>@trafficAccident.AddressX</td>
                 <td>@trafficAccident.CpdNeighborhood</td>
