@@ -12,18 +12,27 @@ namespace CincinnatiAccidents.Pages
 {
     public class IndexModel : PageModel
     {
+        Accidents accidents = new Accidents();
+
         public void OnGet()
         {
             using (var webClient = new WebClient())
             {
-                String trafficjsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/rvmt-pkmq.json");
-                var trafficAccidents = TrafficAccident.FromJson(trafficjsonString);
-                ViewData["trafficAccidents"] = trafficAccidents;
+                //String trafficjsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/rvmt-pkmq.json");
+                //var trafficAccidents = TrafficAccident.FromJson(trafficjsonString);
+                //ViewData["trafficAccidents"] = trafficAccidents;
 
-                String firejsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/vnsz-a3wp.json");
-                var fireAccidents = FireAccident.FromJson(firejsonString);
-                ViewData["fireAccidents"] = fireAccidents;
+                //String firejsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/vnsz-a3wp.json");
+                //var fireAccidents = FireAccident.FromJson(firejsonString);
+                //ViewData["fireAccidents"] = fireAccidents;
+
+                ViewData["trafficAccidents"] = accidents.GetTrafficAccident();
+                ViewData["fireAccidents"] = accidents.GetFireAccident();
+
+
             }
         }
+
+      
     }
 }
