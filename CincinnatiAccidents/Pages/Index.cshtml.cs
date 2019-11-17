@@ -12,7 +12,7 @@ namespace CincinnatiAccidents.Pages
 {
     public class IndexModel : PageModel
     {
-        public void OnGet()
+        public JsonResult OnGet()
         {
             //Retrieving traffic accident data and passing it to View
             String trafficJsonString = getJsonFromURL("https://data.cincinnati-oh.gov/resource/rvmt-pkmq.json");
@@ -24,6 +24,8 @@ namespace CincinnatiAccidents.Pages
             var fireAccidents = FireAccident.FromJson(fireJsonString);
             ViewData["fireAccidents"] = fireAccidents;
 
+            //Returning JSON output
+            return JsonResult(fireJsonString);
             
         }
 
