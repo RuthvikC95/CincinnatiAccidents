@@ -25,7 +25,7 @@ namespace CincinnatiAccidents.Pages
             ViewData["fireAccidents"] = fireAccidents;
 
             //Returning JSON output
-            return JsonResult(fireJsonString);
+            return new JsonResult(fireJsonString);
             
         }
 
