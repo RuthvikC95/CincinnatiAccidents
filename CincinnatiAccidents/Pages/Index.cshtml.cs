@@ -16,6 +16,7 @@ namespace CincinnatiAccidents.Pages
         {
             using (var webClient = new WebClient())
             {
+                // pull in JSON stream for traffic accidents
                 String trafficjsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/rvmt-pkmq.json");
               var trafficAccidents = TrafficAccident.FromJson(trafficjsonString);
                 QuickTypeTraffic.TrafficAccident [] trafficAccidents2 = QuickTypeTraffic.TrafficAccident.FromJson(trafficjsonString);
@@ -30,6 +31,8 @@ namespace CincinnatiAccidents.Pages
                      TrafficAccidentDictionary.Add(accident.CpdNeighborhood, accident);
                  } */ // Commenting this piece of code as there is an error while populating this "STRING" dictionary
 
+
+                // pull in JSON stream for fire accidents
                 String firejsonString = webClient.DownloadString("https://data.cincinnati-oh.gov/resource/vnsz-a3wp.json");
                 var fireAccidents = FireAccident.FromJson(firejsonString);
                 QuickTypeFire.FireAccident[] fireAccidents2 = QuickTypeFire.FireAccident.FromJson(firejsonString);
