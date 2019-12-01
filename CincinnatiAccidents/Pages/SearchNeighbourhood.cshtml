@@ -1,0 +1,122 @@
+﻿@page
+@model CincinnatiAccidents.Pages.SearchNeighbourhoodModel
+@{
+    ViewData["Title"] = "Search Neighborhood";
+    var locationNames = ViewData["LocationNames"];
+    var trafficaccidents = (Traffic.TrafficAccident[])ViewData["trafficAccidents"];
+    var fireaccidents = (Fire.FireAccident[])ViewData["fireAccidents"];
+}
+<h1>Search Neighbourhood</h1>
+
+<form action="" method="POST">
+    <div class="form-group">
+        <label class="control-label" for="search"><strong></strong></label>
+        <input list="locations" class="form-control" name="search" id="search" style="width:50%" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search Neighbourhood" class="btn btn-danger" />
+    </div>
+    <datalist id="locations">
+        @foreach (var locationName in ViewBag.locationNames)
+
+        {
+            <option> @locationName </option>
+        }
+    </datalist>
+</form>
+
+
+@if (Model.SearchCompleted == true)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="trafficAccidentsTab" data-toggle="tab" href="#trafficAccidents" role="tab" aria-controls="nav-home" aria-selected="true">Traffic Accidents</a>
+                        <a class="nav-item nav-link" id="fireAccidentsTab" data-toggle="tab" href="#fireAccidents" role="tab" aria-controls="nav-profile" aria-selected="false">Fire Accidents</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="trafficAccidents" role="tabpanel" aria-labelledby="trafficAccidentsTab">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                    <th>Address</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                    <th>Neighbourhood</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (trafficaccidents.Count() > 0)
+                                {
+                                    @foreach (Traffic.TrafficAccident trafficAccident in trafficaccidents.OrderByDescending(trafficAccident => trafficAccident.Datecrashreported))
+                                    {
+                                        <tr>
+                                            <td>Traffic</td>
+                                            <td>@trafficAccident.Datecrashreported</td>
+                                            <td>@trafficAccident.AddressX</td>
+                                            <td>@trafficAccident.LatitudeX</td>
+                                            <td>@trafficAccident.LongitudeX</td>
+                                            <td>@trafficAccident.CommunityCouncilNeighborhood</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="danger">
+                                        <td colspan="6" class="text-center">
+                                            No results found for term "@Model.Search"
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="fireAccidents" role="tabpanel" aria-labelledby="fireAccidentsTab">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <td>Type</td>
+                                    <th>Date</th>
+                                    <th>Address</th>
+                                    <th>Latitude</th>
+                                    <th>Longitude</th>
+                                    <th>Neighbourhood</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (fireaccidents.Count() > 0)
+                                {
+                                    @foreach (Fire.FireAccident fireAccident in fireaccidents.OrderByDescending(fireAccident => fireAccident.CreateTimeIncident))
+                                    {
+                                        <tr>
+                                            <td>Fire</td>
+                                            <td>@fireAccident.CreateTimeIncident.DateTime.Date</td>
+                                            <td>@fireAccident.AddressX</td>
+                                            <td>@fireAccident.LatitudeX</td>
+                                            <td>@fireAccident.LongitudeX</td>
+                                            <td>@fireAccident.CommunityCouncilNeighborhood</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="danger">
+                                        <td colspan="6" class="text-center">
+                                            No results found for term "@Model.Search"
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
