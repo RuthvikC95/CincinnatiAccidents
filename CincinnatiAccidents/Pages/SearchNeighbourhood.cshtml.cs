@@ -18,6 +18,8 @@ namespace CincinnatiAccidents.Pages
         public ICollection<TrafficAccident> trafficAccidents { get; set; }
         public ICollection<FireAccident> fireAccidents { get; set; }
 
+        HashSet<string> locationNames = new HashSet<string>();
+
         public SearchNeighbourhoodModel()
         {
             using (var webClient = new WebClient())
@@ -32,17 +34,22 @@ namespace CincinnatiAccidents.Pages
         }
         public void OnGet()
         {
-            HashSet<string> locationNames = new HashSet<string>();
             SearchCompleted = false;
             foreach(Traffic.TrafficAccident traffic in trafficAccidents)
+            {
+                if (!traffic.CommunityCouncilNeighborhood.Equals("N/A"))
                 {
-                    locationNames.Add(traffic.CommunityCouncilNeighborhood); 
+                    locationNames.Add(traffic.CommunityCouncilNeighborhood.ToUpper());
                 }
+            }
 
             foreach (Fire.FireAccident fire in fireAccidents)
             {
-                locationNames.Add(fire.CommunityCouncilNeighborhood);
-            }
+                if (!fire.CommunityCouncilNeighborhood.Equals("N/A"))
+                {
+                    locationNames.Add(fire.CommunityCouncilNeighborhood.ToUpper());
+                }
+            } 
 
             ViewData["LocationNames"] = locationNames;
 
@@ -51,29 +58,17 @@ namespace CincinnatiAccidents.Pages
 
         public void OnPost()
         {
-            HashSet<string> locationNames = new HashSet<string>();
 
-            ViewData["LocationNames"] = locationNames;
-            foreach (Traffic.TrafficAccident traffic in trafficAccidents)
-            {
-                locationNames.Add(traffic.CommunityCouncilNeighborhood);
-            }
-
-            foreach (Fire.FireAccident fire in fireAccidents)
-            {
-                locationNames.Add(fire.CommunityCouncilNeighborhood);
-            }
-
-            ViewData["LocationNames"] = locationNames;
-
-            trafficAccidents = trafficAccidents.Where(x => x.CommunityCouncilNeighborhood.ToLower().Equals(Search.ToLower())).ToArray();
+           ViewData["LocationNames"] = locationNames;
+                     
+                trafficAccidents = trafficAccidents.Where(x => x.CommunityCouncilNeighborhood.ToUpper().Equals(Search.ToUpper())).ToArray();
                 ViewData["trafficAccidents"] = trafficAccidents;
 
-                fireAccidents = fireAccidents.Where(x => x.CommunityCouncilNeighborhood.ToLower().Equals(Search.ToLower())).ToArray();
+                fireAccidents = fireAccidents.Where(x => x.CommunityCouncilNeighborhood.ToUpper().Equals(Search.ToUpper())).ToArray();
                 ViewData["fireAccidents"] = fireAccidents;
-            
 
-            SearchCompleted = true;
+                SearchCompleted = true;
+           
         }
 
     }
