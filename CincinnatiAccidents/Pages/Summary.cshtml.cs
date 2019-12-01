@@ -4,15 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Net;
-using Fire;
 using Traffic;
+using Fire;
+using System.Net;
 
 namespace CincinnatiAccidents.Pages
 {
-    public class SearchNeighbourhoodModel : PageModel
+    public class SummaryModel : PageModel
     {
-        [BindProperty]
         public string Search { get; set; }
         public bool SearchCompleted { get; set; }
         public ICollection<TrafficAccident> trafficAccidents { get; set; }
@@ -20,8 +19,7 @@ namespace CincinnatiAccidents.Pages
 
         HashSet<string> locationNames = new HashSet<string>();
 
-
-        public SearchNeighbourhoodModel()
+        public SummaryModel()
         {
             using (var webClient = new WebClient())
             {
@@ -35,7 +33,7 @@ namespace CincinnatiAccidents.Pages
         public void OnGet()
         {
             SearchCompleted = false;
-            foreach(Traffic.TrafficAccident traffic in trafficAccidents)
+            foreach (Traffic.TrafficAccident traffic in trafficAccidents)
             {
                 if (!traffic.CommunityCouncilNeighborhood.Equals("N/A"))
                 {
@@ -49,23 +47,12 @@ namespace CincinnatiAccidents.Pages
                 {
                     locationNames.Add(fire.CommunityCouncilNeighborhood.ToUpper());
                 }
-            } 
+            }
 
+            
             ViewData["LocationNames"] = locationNames;
+            ViewData["trafficAccidents"] = trafficAccidents;
+            ViewData["fireAccidents"] = fireAccidents;
         }
-
-        public void OnPost()
-        {
-           ViewData["LocationNames"] = locationNames;
-                     
-           trafficAccidents = trafficAccidents.Where(x => x.CommunityCouncilNeighborhood.ToUpper().Equals(Search.ToUpper())).ToArray();
-           ViewData["trafficAccidents"] = trafficAccidents;
-
-           fireAccidents = fireAccidents.Where(x => x.CommunityCouncilNeighborhood.ToUpper().Equals(Search.ToUpper())).ToArray();
-           ViewData["fireAccidents"] = fireAccidents;
-
-           SearchCompleted = true;
-        }
-
     }
 }

@@ -1,0 +1,30 @@
+﻿@page
+@model CincinnatiAccidents.Pages.SummaryModel
+@{
+    ViewData["Title"] = "Summary";
+    var locationNames = ViewData["LocationNames"];
+    var trafficaccidents = (Traffic.TrafficAccident[])ViewData["trafficAccidents"];
+    var fireaccidents = (Fire.FireAccident[])ViewData["fireAccidents"];
+}
+    <h5 align="center">Cincinnati Accident Summary (2012 - Present)</h5>
+       <table class="table table-bordered table-striped table-hover">
+           <thead>
+             <tr>
+             <th>Neighborhood</th>
+             <th>Traffic Accidents</th>
+             <th>Fire Accidents</th>
+             </tr>
+           </thead>
+           <tbody>
+             @foreach (var neighborhood in ViewBag.locationNames)
+             { 
+              <tr>
+              <td>@neighborhood</td>
+              <td>@trafficaccidents.Where(x => x.CommunityCouncilNeighborhood.ToUpper().Equals(neighborhood.ToUpper())).Count()</td>
+              <td>@fireaccidents.Where(x => x.CommunityCouncilNeighborhood.ToUpper().Equals(neighborhood.ToUpper())).Count()</td>
+              </tr>
+             }
+           </tbody>
+       </table>
+                   
+
