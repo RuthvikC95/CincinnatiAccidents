@@ -24,7 +24,7 @@ namespace Fire
 
         [DataType(DataType.Date)]
         [JsonProperty("create_time_incident")]
-        public DateTimeOffset CreateTimeIncident { get; set; }
+        public string CreateTimeIncident { get; set; }
 
         [JsonProperty("disposition_text", NullValueHandling = NullValueHandling.Ignore)]
         public DispositionText? DispositionText { get; set; }
