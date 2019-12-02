@@ -1,0 +1,34 @@
+﻿@page
+@model CincinnatiAccidents.Pages.FoodSchedulesModel
+@{
+    ViewData["Title"] = "FoodSchedules";
+    var foodschedules = (CincinnatiAccidents.Models.FoodSchedule[])ViewData["foodschedules"];
+}
+
+<h1>Food Schedules</h1>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Day</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Vendor</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (CincinnatiAccidents.Models.FoodSchedule foodSchedule in foodschedules)
+            {
+                <tr>
+                    <td>Traffic</td>
+                    <td>@foodSchedule.Dayofweekstr</td>
+                    <td>@foodSchedule.Starttime</td>
+                    <td>@foodSchedule.Endtime</td>
+                    <td>@foodSchedule.Applicant</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
