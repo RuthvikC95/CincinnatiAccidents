@@ -23,7 +23,7 @@
 
         [DataType(DataType.Date)]
         [JsonProperty("crashdate")]
-        public DateTimeOffset? Crashdate { get; set; }
+        public string Crashdate { get; set; }
 
         [JsonProperty("crashlocation")]
         public string Crashlocation { get; set; }

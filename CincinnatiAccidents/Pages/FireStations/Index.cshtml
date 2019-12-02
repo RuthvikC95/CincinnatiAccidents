@@ -1,0 +1,64 @@
+﻿@page
+@model CincinnatiAccidents.Pages.FireStations.IndexModel
+
+@{
+    ViewData["Title"] = "Fire Stations List";
+}
+
+<h1 class="text-md-center">Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FireStation[0].Neighbourhood)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FireStation[0].FireStationNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FireStation[0].EngineCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FireStation[0].LadderCompany)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FireStation[0].MedicUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FireStation[0].District)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FireStation[0].Zip)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.FireStation) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Neighbourhood)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FireStationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineCompany)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LadderCompany)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zip)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
