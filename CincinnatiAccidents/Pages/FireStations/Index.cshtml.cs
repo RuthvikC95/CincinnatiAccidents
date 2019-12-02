@@ -38,7 +38,10 @@ namespace CincinnatiAccidents.Pages.FireStations
                 firSt.MedicUnit = data[4];
                 firSt.District = data[5];
                 firSt.Zip = data[6];
+
+                FireStation.Add(firSt);
             }
+            file.Close();
         }
 
     }
