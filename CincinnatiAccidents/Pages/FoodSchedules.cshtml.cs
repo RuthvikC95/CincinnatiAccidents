@@ -12,16 +12,20 @@ namespace CincinnatiAccidents.Pages
     public class FoodSchedulesModel : PageModel
     {
         public ICollection<FoodSchedule> foodSchedules { get; set; }
-        public void OnGet()
+
+        public FoodSchedulesModel()
+        {
+            using (var webClient = new WebClient())
+            {
+                String foodschedulejsonString = webClient.DownloadString("https://mobilefoodschedules.azurewebsites.net/api/saapprovedfoodschedules");
+                foodSchedules = FoodSchedule.FromJson(foodschedulejsonString);
+            }
+        }
+            public void OnGet()
         {
             foreach (FoodSchedule schedule in foodSchedules)
-            { 
-                using (var webClient = new WebClient())
-                {
-                    String trafficjsonString = webClient.DownloadString("https://mobilefoodschedules.azurewebsites.net/api/saapprovedfoodschedules");
-                    foodSchedules = FoodSchedule.FromJson(trafficjsonString);
-                }
-                ViewData["FoodSchedules"] = foodSchedules;
+            {
+                ViewData["foodSchedules"] = foodSchedules;
             }
 
 

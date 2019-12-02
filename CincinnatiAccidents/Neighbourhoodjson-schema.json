@@ -1,0 +1,99 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/NeighbourhoodElement"
+  },
+  "definitions": {
+    "NeighbourhoodElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "neighborhood": {
+          "$ref": "#/definitions/Neighborhood"
+        },
+        "accidentDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "accidentType": {
+          "$ref": "#/definitions/AccidentType"
+        }
+      },
+      "required": [
+        "accidentDate",
+        "accidentType",
+        "address",
+        "latitude",
+        "longitude",
+        "neighborhood"
+      ],
+      "title": "NeighbourhoodElement"
+    },
+    "AccidentType": {
+      "type": "string",
+      "enum": [
+        "traffic",
+        "fire"
+      ],
+      "title": "AccidentType"
+    },
+    "Neighborhood": {
+      "type": "string",
+      "enum": [
+        "DOWNTOWN",
+        "SPRING GROVE VILLAGE",
+        "CORRYVILLE",
+        "HARTWELL",
+        "EVANSTON",
+        "OAKLEY",
+        "MOUNT AUBURN",
+        "SAYLER PARK",
+        "RIVERSIDE",
+        "LINWOOD",
+        "WEST PRICE HILL",
+        "OTR",
+        "MOUNT AIRY",
+        "CLIFTON",
+        "MILLVALE",
+        "SOUTH CUMMINSVILLE",
+        "BOND HILL",
+        "MADISONVILLE",
+        "COLLEGE HILL",
+        "EAST PRICE HILL",
+        "PLEASANT RIDGE",
+        "LOWER PRICE HILL",
+        "CUF - HEIGHTS",
+        "ROSELAWN",
+        "CARTHAGE",
+        "SEDAMSVILLE",
+        "PADDOCK HILLS",
+        "SPRING GROVE - WINTON HILLS",
+        "WEST END",
+        "EAST WESTWOOD",
+        "HYDE PARK - OAKLEY",
+        "CALIFORNIA",
+        "PENDLETON",
+        "NORTH FAIRMOUNT",
+        "VILLAGES AT ROLL HILL",
+        "MOUNT WASHINGTON",
+        "EAST WESTWOOD - WESTWOOD",
+        "ENGLISH WOODS",
+        "KENNEDY HEIGHTS",
+        "COLUMBIA TUSCULUM",
+        "N/A"
+      ],
+      "title": "Neighborhood"
+    }
+  }
+}
+

@@ -20,14 +20,12 @@
             @foreach (CincinnatiAccidents.Models.FoodSchedule foodSchedule in foodschedules)
             {
                 <tr>
-                    <td>Traffic</td>
                     <td>@foodSchedule.Dayofweekstr</td>
                     <td>@foodSchedule.Starttime</td>
                     <td>@foodSchedule.Endtime</td>
                     <td>@foodSchedule.Applicant</td>
                 </tr>
             }
-        }
     </tbody>
 </table>
 
