@@ -48,7 +48,6 @@ namespace CincinnatiAccidents.Pages
                     locationNames.Add(fire.CommunityCouncilNeighborhood.ToUpper());
                 }
             }
-
             
             ViewData["LocationNames"] = locationNames;
             ViewData["trafficAccidents"] = trafficAccidents;
