@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "type": "array",
+  "items": {
+    "$ref": "#/definitions/AccidentElement"
+  },
+  "definitions": {
+    "AccidentElement": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "neighborhood": {
+          "$ref": "string"
+        },
+        "accidentDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "latitude": {
+          "type": "string"
+        },
+        "longitude": {
+          "type": "string"
+        },
+        "accidentType": {
+          "$ref": "#/definitions/AccidentType"
+        }
+      },
+      "required": [
+        "accidentDate",
+        "accidentType",
+        "address",
+        "latitude",
+        "longitude",
+        "neighborhood"
+      ],
+      "title": "AccidentElement"
+    },
+    "AccidentType": {
+      "type": "string",
+      "enum": [
+        "traffic",
+        "fire"
+      ],
+      "title": "AccidentType"
+    }
+  }
+}

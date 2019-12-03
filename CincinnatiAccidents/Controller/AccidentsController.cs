@@ -16,8 +16,9 @@ namespace CincinnatiAccidents.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NeighbourhoodsController : ControllerBase
+    public class AccidentsController : ControllerBase
     {
+        [Obsolete]
         private readonly IHostingEnvironment _environment;
         public string Search { get; set; }
         public bool SearchCompleted { get; set; }
@@ -26,16 +27,16 @@ namespace CincinnatiAccidents.Controller
 
         HashSet<string> locationNames = new HashSet<string>();
 
-        public NeighbourhoodsController(IHostingEnvironment environment)
+        public AccidentsController(IHostingEnvironment environment)
         {
             _environment = environment;
         }
 
         // GET: api/Neighbourhoods
         [HttpGet("{id}")]
-        public ActionResult<IEnumerable<Neighbourhood>> GetNeighbourhood(string  id)
+        public ActionResult<IEnumerable<Accident>> GetAccident (string  id)
         {
-            List<Neighbourhood> Neighbourhood = new List<Neighbourhood>();
+            List<Accident> Accidents = new List<Accident>();
             string location = id;
 
             using (var webClient = new WebClient())
@@ -51,28 +52,28 @@ namespace CincinnatiAccidents.Controller
 
             foreach (TrafficAccident traffic in trafficAccidents)
             {
-                Neighbourhood nh = new Neighbourhood();
+                Accident nh = new Accident();
                 nh.Address = traffic.AddressX;
                 nh.AccidentDate = traffic.Crashdate;
                 nh.Latitude = traffic.LatitudeX;
                 nh.Longitude = traffic.LongitudeX;
                 nh.Neighborhood = traffic.CommunityCouncilNeighborhood;
                 nh.accidentType = "traffic";
-                Neighbourhood.Add(nh);
+                Accidents.Add(nh);
             }
 
             foreach (FireAccident fire in fireAccidents)
             {
-                Neighbourhood nh = new Neighbourhood();
+                Accident nh = new Accident();
                 nh.Address = fire.AddressX;
                 nh.AccidentDate = fire.CreateTimeIncident;
                 nh.Latitude = fire.LatitudeX;
                 nh.Longitude = fire.LongitudeX;
                 nh.Neighborhood = fire.CommunityCouncilNeighborhood;
                 nh.accidentType = "fire";
-                Neighbourhood.Add(nh);
+                Accidents.Add(nh);
             }
-            return Neighbourhood;
+            return Accidents;
         }
     }
 

@@ -14,7 +14,7 @@ namespace CincinnatiAccidents.Models
         {
         }
 
-        public DbSet<CincinnatiAccidents.Models.Neighbourhood> Neighbourhood { get; set; }
+        public DbSet<CincinnatiAccidents.Models.Accident> Accident { get; set; }
 
         public DbSet<CincinnatiAccidents.Models.FireStation> FireStation { get; set; }
     }
