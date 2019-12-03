@@ -6,6 +6,10 @@
     var trafficaccidents = (Traffic.TrafficAccident[])ViewData["trafficAccidents"];
     var fireaccidents = (Fire.FireAccident[])ViewData["fireAccidents"];
 }
+<link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <h1>Search Neighbourhood</h1>
 
 <form action="" method="POST">
@@ -39,7 +43,7 @@
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="trafficAccidents" role="tabpanel" aria-labelledby="trafficAccidentsTab">
-                        <table class="table table-bordered table-striped table-hover">
+                        <table class="table table-bordered table-striped table-hover text">
                             <thead>
                                 <tr>
                                     <th>Type</th>

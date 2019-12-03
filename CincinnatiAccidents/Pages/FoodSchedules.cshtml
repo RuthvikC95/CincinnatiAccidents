@@ -4,29 +4,35 @@
     ViewData["Title"] = "FoodSchedules";
     var foodschedules = (CincinnatiAccidents.Models.FoodSchedule[])ViewData["foodschedules"];
 }
-
-<h1>Food Schedules</h1>
-
-<table class="table table-bordered table-striped table-hover">
-    <thead>
-        <tr>
-            <th>Vendor</th>
-            <th>Day</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-        </tr>
-    </thead>
-    <tbody>
-            @foreach (CincinnatiAccidents.Models.FoodSchedule foodSchedule in foodschedules)
-            {
-                <tr>
-                    <td>@foodSchedule.Applicant</td>
-                    <td>@foodSchedule.Dayofweekstr</td>
-                    <td>@foodSchedule.Starttime</td>
-                    <td>@foodSchedule.Endtime</td>
+<link rel="stylesheet" type="text/css" href="~/css/StyleSheet.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src ="~/js/external.js"></script>
+<body onload="makeTableScroll();">
+    <h1>Food Schedules</h1>
+    <div class="scrollingTable">
+        <table class="table table-bordered table-striped table-hover" id="myTable">
+            <thead class="badge-info">
+                <tr class="text">
+                    <th>Vendor</th>
+                    <th>Day</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
                 </tr>
-            }
-    </tbody>
-</table>
-
+            </thead>
+            <tbody>
+                @foreach (CincinnatiAccidents.Models.FoodSchedule foodSchedule in foodschedules)
+                {
+                    <tr>
+                        <td id="boldface">@foodSchedule.Applicant</td>
+                        <td>@foodSchedule.Dayofweekstr</td>
+                        <td>@foodSchedule.Starttime</td>
+                        <td>@foodSchedule.Endtime</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
 

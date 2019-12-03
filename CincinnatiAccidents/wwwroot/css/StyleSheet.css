@@ -39,3 +39,11 @@
 .container:hover .middle {
     opacity: 1;
 }
+#boldface{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-display:block;
+    font-style:italic;
+}
+.scrollingTable {
+    overflow-y: auto;
+}
