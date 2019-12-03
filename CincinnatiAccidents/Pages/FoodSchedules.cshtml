@@ -10,20 +10,20 @@
 <table class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
+            <th>Vendor</th>
             <th>Day</th>
             <th>Start Time</th>
             <th>End Time</th>
-            <th>Vendor</th>
         </tr>
     </thead>
     <tbody>
             @foreach (CincinnatiAccidents.Models.FoodSchedule foodSchedule in foodschedules)
             {
                 <tr>
+                    <td>@foodSchedule.Applicant</td>
                     <td>@foodSchedule.Dayofweekstr</td>
                     <td>@foodSchedule.Starttime</td>
                     <td>@foodSchedule.Endtime</td>
-                    <td>@foodSchedule.Applicant</td>
                 </tr>
             }
     </tbody>
