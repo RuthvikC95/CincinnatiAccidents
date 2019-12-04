@@ -13,9 +13,9 @@ namespace CincinnatiAccidents.Pages.CitizenSurveys
 {
         public class CreateModel : PageModel
         {
-            private readonly IHostingEnvironment _environment;
+            private readonly IWebHostEnvironment _environment;
 
-            public CreateModel(IHostingEnvironment environment)
+            public CreateModel(IWebHostEnvironment environment)
             {
                 _environment = environment;
             }
@@ -28,7 +28,7 @@ namespace CincinnatiAccidents.Pages.CitizenSurveys
             [BindProperty]
             public CitizenSurvey CitizenSurvey { get; set; }
 
-            public async Task<IActionResult> OnPost()
+            public IActionResult OnPost()
             {
                 if (!ModelState.IsValid)
                 {

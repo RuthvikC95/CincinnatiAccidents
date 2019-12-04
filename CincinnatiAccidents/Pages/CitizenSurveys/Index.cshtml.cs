@@ -8,14 +8,15 @@ using Microsoft.EntityFrameworkCore;
 using CincinnatiAccidents.Models;
 using Microsoft.Extensions.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CincinnatiAccidents.Pages.CitizenSurveys
 {
     public class IndexModel : PageModel
     {
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
 
-        public IndexModel(IHostingEnvironment environment)
+        public IndexModel(IWebHostEnvironment environment)
         {
             _environment = environment;
         }
