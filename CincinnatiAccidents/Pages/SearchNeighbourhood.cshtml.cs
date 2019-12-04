@@ -18,7 +18,7 @@ namespace CincinnatiAccidents.Pages
         public ICollection<TrafficAccident> trafficAccidents { get; set; }
         public ICollection<FireAccident> fireAccidents { get; set; }
 
-        public static HashSet<string> locationNames = new HashSet<string>();
+        HashSet<string> locationNames = new HashSet<string>();
 
 
         public SearchNeighbourhoodModel()
@@ -56,8 +56,23 @@ namespace CincinnatiAccidents.Pages
 
         public void OnPost()
         {
-                   
-           ViewData["LocationNames"] = locationNames;
+            foreach (Traffic.TrafficAccident traffic in trafficAccidents)
+            {
+                if (!traffic.CommunityCouncilNeighborhood.Equals("N/A"))
+                {
+                    locationNames.Add(traffic.CommunityCouncilNeighborhood.ToUpper());
+                }
+            }
+
+            foreach (Fire.FireAccident fire in fireAccidents)
+            {
+                if (!fire.CommunityCouncilNeighborhood.Equals("N/A"))
+                {
+                    locationNames.Add(fire.CommunityCouncilNeighborhood.ToUpper());
+                }
+            }
+
+            ViewData["LocationNames"] = locationNames;
                      
            trafficAccidents = trafficAccidents.Where(x => x.CommunityCouncilNeighborhood.ToUpper().Equals(Search.ToUpper())).ToArray();
            ViewData["trafficAccidents"] = trafficAccidents;

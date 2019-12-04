@@ -1,0 +1,49 @@
+﻿@page
+@model CincinnatiAccidents.Pages.CitizenSurveys.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4 class="text-md-center">Citizen Survey on Road Condition & Fire Safety in the City of Cincinnati</h4>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CitizenSurvey.Name" class="control-label"></label>
+                <input asp-for="CitizenSurvey.Name" class="form-control" placeholder="Enter Name in First Name, Last Name Format" />
+                <span asp-validation-for="CitizenSurvey.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CitizenSurvey.Neighbourhood" class="control-label"></label>
+                <input asp-for="CitizenSurvey.Neighbourhood" class="form-control" placeholder="Enter Neighbourhood in City of Cincinnati" />
+                <span asp-validation-for="CitizenSurvey.Neighbourhood" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CitizenSurvey.RoadCondition" class="control-label"></label>
+                <input asp-for="CitizenSurvey.RoadCondition" class="form-control" placeholder="Please enter Good, Bad, N/A values for Road Condition"/>
+                <span asp-validation-for="CitizenSurvey.RoadCondition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CitizenSurvey.CarsOwned" class="control-label"></label>
+                <input asp-for="CitizenSurvey.CarsOwned" class="form-control" placeholder="Please enter no of cars owned. If none, please enter 0" />
+                <span asp-validation-for="CitizenSurvey.CarsOwned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CitizenSurvey.BuildingFireSafety" class="control-label"></label>
+                <input asp-for="CitizenSurvey.BuildingFireSafety" class="form-control" placeholder="Please enter Safe, Unsafe, N/A values for Fire Safety" />
+                <span asp-validation-for="CitizenSurvey.BuildingFireSafety" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

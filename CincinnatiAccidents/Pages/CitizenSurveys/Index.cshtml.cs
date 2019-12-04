@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using CincinnatiAccidents.Models;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using System.IO;
 
-namespace CincinnatiAccidents.Pages.FireStations
+namespace CincinnatiAccidents.Pages.CitizenSurveys
 {
     public class IndexModel : PageModel
     {
@@ -20,29 +20,27 @@ namespace CincinnatiAccidents.Pages.FireStations
             _environment = environment;
         }
 
-        public IList<FireStation> FireStation = new List<FireStation>();
+        public IList<CitizenSurvey> CitizenSurvey = new List<CitizenSurvey>();
 
         public void OnGet()
         {
             string line;
-            string path = Path.Combine(_environment.ContentRootPath, "FireStations.txt");
+            string path = Path.Combine(_environment.ContentRootPath, "CitizenSurvey.txt");
             StreamReader file = new System.IO.StreamReader(path);
             while ((line = file.ReadLine()) != null)
             {
                 string[] data = line.Split(',');
-                FireStation firSt = new FireStation();
-                firSt.Neighbourhood = data[0];
-                firSt.FireStationNumber = data[1];
-                firSt.EngineCompany = data[2];
-                firSt.LadderCompany = data[3];
-                firSt.MedicUnit = data[4];
-                firSt.District = data[5];
-                firSt.Zip = data[6];
+                CitizenSurvey survey = new CitizenSurvey();
+                survey.Name = data[0];
+                survey.Neighbourhood = data[1];
+                survey.CarsOwned = Int32.Parse(data[2]);
+                survey.RoadCondition = data[3];
+                survey.BuildingFireSafety = data[4];
+               
 
-                FireStation.Add(firSt);
+                CitizenSurvey.Add(survey);
             }
             file.Close();
         }
-
     }
 }

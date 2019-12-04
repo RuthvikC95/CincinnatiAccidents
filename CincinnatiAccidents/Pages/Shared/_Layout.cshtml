@@ -9,9 +9,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-danger border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Cincinnati Accidents</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index" style="color: white;"><strong>Cincinnati Accidents</strong></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,25 +19,25 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link btn text-white" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/SearchNeighbourhood">Search</a>
+                            <a class="nav-link btn text-white" asp-area="" asp-page="/SearchNeighbourhood" style="color: white;">Search</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Summary">Summary</a>
+                            <a class="nav-link btn text-white" asp-area="" asp-page="/Summary" style="color: white;">Summary</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" href="/api/accidents/downtown">Accidents API</a>
+                            <a class="nav-link btn text-white" asp-area="" asp-page="/CitizenSurveys/Create" style="color: white;">Survey Form</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/FireStations/Create">User Form</a>
+                            <a class="nav-link btn text-white" asp-area="" asp-page="/CitizenSurveys/Index" style="color: white;">Survey Results</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/FireStations/Index">Fire Stations</a>
+                            <a class="nav-link btn text-white" asp-area="" asp-page="/FoodSchedules" style="color: white;">Mobile Food Schedule</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/FoodSchedules">Food Schedule</a>
+                            <a class="nav-link btn text-white" href="/api/accidents/downtown" style="color: white;">Accidents API</a>
                         </li>
                     </ul>
                 </div>
@@ -49,12 +49,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - CincinnatiAccidents - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

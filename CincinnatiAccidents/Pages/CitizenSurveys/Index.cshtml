@@ -1,0 +1,53 @@
+﻿@page
+@model CincinnatiAccidents.Pages.CitizenSurveys.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="text-md-center">Survey Results</h2>
+<p><em>Note: Following results are collected through the survey in the city of cincinnati. This records the views of its citizens on road and fire safety in various neighbourhoods</em></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CitizenSurvey[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CitizenSurvey[0].Neighbourhood)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CitizenSurvey[0].RoadCondition)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CitizenSurvey[0].CarsOwned)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CitizenSurvey[0].BuildingFireSafety)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CitizenSurvey) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Neighbourhood)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoadCondition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarsOwned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingFireSafety)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
